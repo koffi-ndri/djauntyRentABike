@@ -1,0 +1,96 @@
+$ python3 manage.py makemigrations
+Migrations for 'BikeRentalApp':
+  BikeRentalApp/migrations/0001_initial.py
+    - Create model Bike
+    - Create model Renter
+    - Create model Rental
+$ python3 manage.py migrate
+Operations to perform:
+  Apply all migrations: BikeRentalApp, admin, auth, contenttypes, sessions
+Running migrations:
+  Applying BikeRentalApp.0001_initial... OK
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying auth.0012_alter_user_first_name_max_length... OK
+  Applying sessions.0001_initial... OK
+$ python3 manage.py shell
+Python 3.6.9 (default, Jan 26 2021, 15:33:00) 
+Type 'copyright', 'credits' or 'license' for more information
+IPython 7.16.2 -- An enhanced Interactive Python. Type '?' for help.
+
+In [1]: from BikeRentalApp.models import Bike, Renter
+   ...: , Rental
+
+In [2]: bike_one = Bike(bike_type="ST", color="red")
+
+In [3]: bike_one.save()
+
+In [4]: bike_two = Bike(bike_type="TA", color="blue")
+   ...: 
+
+In [5]: bike_two.save()
+
+In [6]: bike_three = Bike(bike_type="EL", color="yell
+   ...: ow")
+
+In [7]: bike_three.save()
+
+In [8]: bike_four = Bike(bike_type="TA", color="black
+   ...: ")
+
+In [9]: bike_four.save()
+
+In [10]: bike_five = Bike(bike_type="ST", color="whit
+    ...: e")
+
+In [11]: renter_one = Renter(first_name="Andrew", las
+    ...: t_name="Brown", phone="0235476895", vip_num=
+    ...: "78695")
+
+In [12]: renter_one.save()
+
+In [13]: renter_two = Renter(first_name="Gabriel", la
+    ...: st_name="Batistuta", phone="0456903954", vip
+    ...: _num="93083")
+
+In [14]: renter_two.save()
+
+In [15]: renter_three = Renter(first_name="Didier", l
+    ...: ast_name="Drogba", phone="0659838576", vip_n
+    ...: um="85734")
+
+In [16]: renter_three.save()
+
+In [17]: first_bike = Bike.objects.first()
+
+In [18]: first_renter = Renter.objects.first()
+
+In [19]: rental_one = Rental(bike=first_bike, renter=
+    ...: first_renter)
+
+In [20]: rental_one.save()
+
+In [21]: last_renter = Bike.objects.last()
+
+In [22]: last_bike = Bike.objects.last()
+
+In [23]: last_renter = Renter.objects.last()
+
+In [24]: rental_two = Rental(bike=last_bike, renter=l
+    ...: ast_renter)
+
+In [25]: rental_two.save()
